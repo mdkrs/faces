@@ -26,6 +26,9 @@ def gen_hash_name():
 
 def extract_archive(archive):
     allowed_formats = ['jpg', 'jpeg']
+    arch_name = archive.archive.name.split('.')
+    if len(arch_name) > 2 or arch_name[-1] != 'zip':
+        raise NotImplementedError('Not supported format')
     with zipfile.ZipFile(archive.archive.path, "r") as f_arch:
         for entry in f_arch.infolist():
             if entry.filename.split('.')[-1] not in allowed_formats:

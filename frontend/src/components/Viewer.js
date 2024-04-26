@@ -138,7 +138,7 @@ export default function Viewer() {
                     </Grid>
                     <Box sx={{mt: 2}}>
                         {groups.length > 0 && groups.map((person, idx) => {
-                            return (<PersonFolder key={idx} faces={person} num={idx}></PersonFolder>)
+                            return (<PersonFolder key={idx} faces={person} num={idx} images={images} gr_info={gr_info}></PersonFolder>)
                         })}
                     </Box>
                 </Grid>

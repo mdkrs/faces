@@ -8,8 +8,18 @@ import Typography from '@mui/material/Typography';
 import { Grid, LinearProgress } from "@mui/material";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function PersonFolder(props) {
+    const getImageLocalIndex = (id) => {
+        for (var i = 0; i < props.images.length; ++i) {
+            if (props.images[i].id === id) {
+                return i;
+            }
+        }
+        return 0;
+    };
+
     return (
         <Box>
             <Typography variant="h6">
@@ -18,11 +28,13 @@ export default function PersonFolder(props) {
 
             <ImageList sx={{ width: 500, height: 120}} cols={5} rowHeight={100}>
                 {props.faces.map((face, ind) => (
-                    <ImageListItem key={ind}>
-                        <img
-                            src={face.face_url}
-                        />
-                    </ImageListItem>
+                    <Tooltip key={ind} title={props.images[getImageLocalIndex(face.img)].name}>
+                        <ImageListItem>
+                            <img
+                                src={face.face_url}
+                            />
+                        </ImageListItem>
+                    </Tooltip>
                 ))}
             </ImageList>
         </Box>
